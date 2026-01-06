@@ -1,6 +1,14 @@
 {
+    "name": "aymen/e-portfolio",
+    "description": "E-portfolio de Aymen Boumliki - BUT Réseaux et Télécommunications",
     "type": "project",
     "license": "proprietary",
+    "authors": [
+        {
+            "name": "Aymen Boumliki",
+            "email": "aymenboumliki2007@gmail.com"
+        }
+    ],
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {

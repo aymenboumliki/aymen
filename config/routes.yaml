@@ -1,11 +1,9 @@
-# yaml-language-server: $schema=../vendor/symfony/routing/Loader/schema/routing.schema.json
+# config/routes.yaml
 
-# This file is the entry point to configure the routes of your app.
-# Methods with the #[Route] attribute are automatically imported.
-# See also https://symfony.com/doc/current/routing.html
-
-# To list all registered routes, run the following command:
-#   bin/console debug:router
-
+# Cette configuration indique à Symfony d'aller chercher 
+# les routes définies par des attributs (#[Route]) dans tes contrôleurs.
 controllers:
-    resource: routing.controllers
+    resource: ../src/Controller/
+    type: attribute
+
+# Si tu as d'autres routes spécifiques, elles s'ajouteront en dessous.

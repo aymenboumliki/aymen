@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="page-home">
+    <div class="container">
+        <div class="glass-card" style="max-width: 600px; margin: 0 auto; border-top: 6px solid var(--primary);">
+            <h2 style="text-align: center;"><i class="fas fa-star" style="color: #fbbf24;"></i> Votre avis sur mon Portfolio</h2>
+            <form style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                <input type="text" placeholder="Nom ou Entreprise" style="padding: 12px; border-radius: 10px; border: 1px solid #ddd;">
+                <select style="padding: 12px; border-radius: 10px; border: 1px solid #ddd;">
+                    <option>Note : ⭐⭐⭐⭐⭐ (Excellent)</option>
+                    <option>Note : ⭐⭐⭐⭐ (Très bien)</option>
+                    <option>Note : ⭐⭐⭐ (Bien)</option>
+                </select>
+                <textarea placeholder="Votre message..." rows="4" style="padding: 12px; border-radius: 10px; border: 1px solid #ddd;"></textarea>
+                <button type="submit" class="btn-main">Envoyer l'avis</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

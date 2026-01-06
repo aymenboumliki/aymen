@@ -1,17 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Aymen Boumliki | Portfolio{% endblock %}</title>
+        
+        {# Polices modernes et Icônes FontAwesome #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
+        <style>
+            :root {
+                --primary: #0ea5e9;    /* Bleu Ciel */
+                --primary-dark: #0284c7; 
+                --secondary: #6366f1;  /* Indigo (remplace le rose) */
+                --success: #16a34a;    /* Vert */
+                --dark: #0f172a;       /* Texte sombre */
+                --light: #f8fafc;      /* Fond clair */
+            }
+
+            body { 
+                font-family: 'Plus Jakarta Sans', sans-serif; 
+                margin: 0; 
+                background: var(--light); 
+                color: var(--dark);
+                line-height: 1.6;
+            }
+
+            /* --- NAVIGATION --- */
+            nav {
+                background: rgba(255, 255, 255, 0.85);
+                backdrop-filter: blur(12px);
+                padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+
+            nav .logo { font-weight: 800; font-size: 1.4rem; color: var(--primary); letter-spacing: -1px; }
+
+            nav a {
+                text-decoration: none;
+                color: var(--dark);
+                font-weight: 600;
+                transition: all 0.3s ease;
+                padding: 10px 18px;
+                border-radius: 12px;
+                font-size: 0.95rem;
+            }
+
+            nav a:hover { background: var(--primary); color: white; transform: translateY(-2px); }
+
+            .container { max-width: 1100px; margin: 0 auto; }
+
+            .glass-card {
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                border-radius: 30px;
+                padding: 40px;
+                box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+            }
+
+            .btn-main {
+                background: var(--primary);
+                color: white;
+                padding: 14px 28px;
+                border-radius: 14px;
+                text-decoration: none;
+                font-weight: 700;
+                display: inline-block;
+                transition: all 0.3s;
+                border: none;
+            }
+
+            footer { 
+                background: var(--dark); 
+                color: white; 
+                padding: 60px 20px; 
+                text-align: center; 
+            }
+
+            .social-icons {
+                margin-bottom: 20px;
+            }
+
+            .social-icons a { 
+                color: white; 
+                font-size: 1.8rem; 
+                margin: 0 15px; 
+                text-decoration: none; 
+                transition: all 0.3s ease;
+                display: inline-block;
+            }
+
+            /* Couleurs au survol pour les réseaux */
+            .social-icons a:hover { transform: scale(1.2); }
+            .fa-instagram:hover { color: #E1306C; }
+            .fa-linkedin:hover { color: #0077B5; }
+            .fa-github:hover { color: #6e5494; }
+            .fa-envelope:hover { color: var(--primary); }
+
+        </style>
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <nav>
+            <div class="logo">AYMEN<span style="color: var(--dark);">.</span></div>
+            <div class="nav-links">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <a href="{{ path('app_cv') }}">Mon Parcours</a>
+                <a href="{{ path('app_projects') }}">Loisirs & Projets</a>
+                <a href="{{ path('app_avis') }}" style="border: 2px solid var(--primary);">Donner mon avis</a>
+            </div>
+        </nav>
+
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+
+        <footer>
+            <div class="social-icons">
+                {# GitHub #}
+                <a href="https://github.com/aymenboumliki" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                {# LinkedIn #}
+                <a href="https://www.linkedin.com/in/aymen-boumliki-a554882a3" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                {# Instagram #}
+                <a href="https://www.instagram.com/7a.aymen?igsh=MWVkODhwMmVremJjNQ%3D%3D&utm_source=qr" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                {# Email #}
+                <a href="mailto:aymenboumliki2007@gmail.com" title="Envoyer un email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <p>© 2026 — Aymen Boumliki | Étudiant en Réseaux et Télécommunications</p>
+        </footer>
     </body>
 </html>

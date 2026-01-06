@@ -1,0 +1,219 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon CV - Aymen Boumliki{% endblock %}
+
+{% block body %}
+<section class="page-cv">
+    <div class="container" style="padding: 40px 20px;">
+        <div style="display: grid; grid-template-columns: 1fr 350px; gap: 30px; align-items: start;">
+            
+            {# --- COLONNE DE GAUCHE : PARCOURS & COMPÉTENCES --- #}
+            <div class="main-column">
+                
+                {# 1. Carte Parcours Académique #}
+                <div class="glass-card" style="border-top: 6px solid var(--success); margin-bottom: 30px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                        <h1 style="color: var(--dark); margin: 0; font-size: 2.2rem;">Mon Parcours</h1>
+                        <span style="background: var(--success); color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: bold;">DISPONIBLE</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; background: #f8fafc; padding: 20px; border-radius: 15px;">
+                        <div>
+                            <small style="color: var(--success); font-weight: bold; text-transform: uppercase;">Localisation</small>
+                            <p style="margin: 5px 0; font-weight: 600;"><i class="fas fa-map-marker-alt"></i> Roanne, France</p>
+                        </div>
+                        <div>
+                            <small style="color: var(--success); font-weight: bold; text-transform: uppercase;">Email</small>
+                            <p style="margin: 5px 0; font-weight: 600;"><i class="fas fa-envelope"></i> aymenboumliki2007@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <h3 style="display: flex; align-items: center; gap: 10px; color: var(--dark); margin-bottom: 25px;">
+                        <i class="fas fa-graduation-cap" style="color: var(--success);"></i> Études & Diplômes
+                    </h3>
+                    <div style="border-left: 2px solid #e2e8f0; padding-left: 20px; margin-left: 10px;">
+                        <div class="timeline-item">
+                            <h4 style="margin: 0;">BUT Réseaux et Télécommunications</h4>
+                            <p style="color: var(--success); font-weight: 700; margin: 5px 0;">IUT de Roanne | 2025 - 2028</p>
+                            <p style="font-size: 0.9rem; color: #64748B;">Administration réseaux et sécurisation des infrastructures.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4 style="margin: 0;">Baccalauréat Sciences Physiques</h4>
+                            <p style="color: var(--success); font-weight: 700; margin: 5px 0;">Lycée Qualifiant Al Phosphate | 2024 - 2025</p>
+                            <p style="font-size: 0.9rem; color: #64748B;">Mention Bien - Khouribga.</p>
+                        </div>
+                    </div>
+                </div>
+
+                {# 2. Carte Principales Compétences (Style LinkedIn) #}
+                <div class="glass-card" style="border-top: 6px solid var(--primary);">
+                    <h3 style="color: var(--dark); margin-bottom: 25px; font-size: 1.5rem;">Principales compétences de AYMEN</h3>
+                    
+                    <div class="skills-list">
+                        {# Skill 1 #}
+                        <div class="skill-row">
+                            <div class="skill-icon"><i class="fab fa-linux"></i></div>
+                            <div class="skill-details">
+                                <strong>Linux</strong>
+                                <p><i class="fas fa-university"></i> IUT de Roanne</p>
+                            </div>
+                        </div>
+
+                        {# Skill 2 #}
+                        <div class="skill-row">
+                            <div class="skill-icon"><i class="fas fa-users"></i></div>
+                            <div class="skill-details">
+                                <strong>Travail d’équipe</strong>
+                                <p><i class="fas fa-university"></i> IUT de Roanne • Lycée Qualifiant Phosphate</p>
+                            </div>
+                        </div>
+
+                        {# Skill 3 #}
+                        <div class="skill-row">
+                            <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                            <div class="skill-details">
+                                <strong>Résolution de problèmes</strong>
+                                <p><i class="fas fa-university"></i> IUT de Roanne • Lycée Qualifiant Phosphate</p>
+                            </div>
+                        </div>
+
+                        {# Skill 4 #}
+                        <div class="skill-row">
+                            <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                            <div class="skill-details">
+                                <strong>VLAN</strong>
+                                <p><i class="fas fa-university"></i> IUT de Roanne</p>
+                            </div>
+                        </div>
+
+                        {# Skill 5 #}
+                        <div class="skill-row">
+                            <div class="skill-icon"><i class="fas fa-microscope"></i></div>
+                            <div class="skill-details">
+                                <strong>Analyse des trames</strong>
+                                <p><i class="fas fa-university"></i> IUT de Roanne</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
+                        <a href="#" class="skill-link">En savoir plus sur ces compétences <i class="fas fa-arrow-right"></i></a>
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 12px; line-height: 1.4;">
+                            Découvrez des offres d’emploi, des personnes, du contenu d’apprentissage et des discussions ayant trait à ces compétences
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {# --- COLONNE DE DROITE : TÉLÉCHARGEMENT --- #}
+            <div class="sidebar">
+                <div class="glass-card" style="background: var(--dark); color: white; border: none; position: sticky; top: 100px;">
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <i class="fas fa-file-pdf" style="font-size: 3.5rem; color: var(--success); margin-bottom: 15px;"></i>
+                        <h2 style="margin: 0; font-size: 1.4rem;">Mon CV PDF</h2>
+                        <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 10px;">Recevez mon dossier complet directement par email.</p>
+                    </div>
+
+                    <form style="display: flex; flex-direction: column; gap: 15px;">
+                        <input type="text" placeholder="Votre nom" style="padding: 12px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: white;">
+                        <input type="email" placeholder="votre@email.com" style="padding: 12px; border-radius: 10px; border: 1px solid #334155; background: #1e293b; color: white;">
+                        <button type="submit" class="btn-main" style="background: var(--success); width: 100%; border: none; cursor: pointer; padding: 15px;">
+                            Générer le PDF <i class="fas fa-download" style="margin-left: 8px;"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    .timeline-item {
+        margin-bottom: 25px;
+        position: relative;
+    }
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -26px;
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        background: var(--success);
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 0 0 2px var(--success);
+    }
+
+    .skills-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .skill-row {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 18px;
+        background: #f8fafc;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+
+    .skill-row:hover {
+        transform: translateX(8px);
+        background: white;
+        border-color: var(--primary);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .skill-icon {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 1.4rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        flex-shrink: 0;
+    }
+
+    .skill-details strong {
+        display: block;
+        font-size: 1.1rem;
+        color: var(--dark);
+        margin-bottom: 2px;
+    }
+
+    .skill-details p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: #64748b;
+        font-weight: 500;
+    }
+
+    .skill-link {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 0.95rem;
+        transition: 0.2s;
+    }
+
+    .skill-link:hover {
+        letter-spacing: 0.5px;
+        opacity: 0.8;
+    }
+
+    @media (max-width: 992px) {
+        section .container > div { grid-template-columns: 1fr !important; }
+        .sidebar .glass-card { position: static !important; margin-top: 30px; }
+    }
+</style>
+{% endblock %}

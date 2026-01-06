@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Loisirs et Projets - Aymen Boumliki{% endblock %}
+
+{% block body %}
+<section class="page-projects" style="padding-bottom: 60px;">
+    <div class="container">
+        
+        {# --- SECTION 1 : PROJETS TECHNIQUES --- #}
+        <div style="text-align: center; margin-bottom: 50px; padding-top: 40px;">
+            <h1 style="font-size: 2.8rem; color: var(--dark); margin-bottom: 15px; font-weight: 800;">
+                Mes Projets <span style="color: var(--primary);">Techniques</span>
+            </h1>
+            <p style="font-size: 1.1rem; color: #64748B; max-width: 600px; margin: 0 auto;">
+                Réalisations académiques et certifications officielles en Réseaux et Cybersécurité.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 80px;">
+            
+            {# SAE 1.02 #}
+            <div class="glass-card" style="border-top: 6px solid var(--primary); display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="width: 60px; height: 60px; background: #e0f2fe; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-network-wired" style="font-size: 1.8rem; color: var(--primary);"></i>
+                    </div>
+                    <h3 style="color: var(--dark); font-size: 1.5rem; margin-bottom: 15px;">SAE 1.02 : Initiation Réseaux</h3>
+                    <p style="color: #475569; line-height: 1.7;">
+                        Conception de réseaux locaux : adressage IP, configuration de switchs Cisco et analyse de connectivité.
+                    </p>
+                </div>
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #f1f5f9;">
+                    <span style="color: var(--primary); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">Infrastructure & Commutation</span>
+                </div>
+            </div>
+
+            {# MOOC ANSSI / Cybersécurité #}
+            <div class="glass-card" style="border-top: 6px solid #16a34a; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="width: 60px; height: 60px; background: #f0fdf4; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-shield-check" style="font-size: 1.8rem; color: #16a34a;"></i>
+                    </div>
+                    <h3 style="color: var(--dark); font-size: 1.5rem; margin-bottom: 10px;">Certification SecNumacadémie</h3>
+                    <p style="color: #475569; font-size: 0.95rem; margin-bottom: 15px;">
+                        Formation délivrée par l'<strong>ANSSI</strong> validée avec succès le 25/09/2025.
+                    </p>
+                    
+                    {# Détails des scores réels extraits de ton document #}
+                    <div style="background: #f8fafc; padding: 12px; border-radius: 10px; font-size: 0.85rem; border: 1px solid #e2e8f0; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Panorama de la SSI</span> <strong>82.0%</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Authentification</span> <strong>82.0%</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Sécurité sur Internet</span> <strong>88.0%</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Poste de travail & Nomadisme</span> <strong>80.0%</strong>
+                        </div>
+                    </div>
+
+                    {# BOUTON DE TÉLÉCHARGEMENT DIRECT #}
+                    <a href="{{ asset('ATTESTATION SECNUM.pdf') }}" target="_blank" class="btn-download" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #16a34a; color: white; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; transition: 0.3s;">
+                        <i class="fas fa-file-pdf"></i> Voir mon attestation officielle
+                    </a>
+                </div>
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="color: #16a34a; font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">Cybersécurité</span>
+                    <span style="background: #16a34a; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px;">CERTIFIÉ</span>
+                </div>
+            </div>
+        </div>
+
+        <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, #e2e8f0, transparent); margin-bottom: 80px;">
+
+        {# --- SECTION 2 : LOISIRS --- #}
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem; color: var(--dark); margin-bottom: 15px; font-weight: 800;">
+                Mes <span style="color: #6366f1;">Loisirs</span>
+            </h2>
+            <p style="font-size: 1.1rem; color: #64748B;">Valeurs de discipline et de créativité.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            {# Judo #}
+            <div class="glass-card" style="border-top: 6px solid #6366f1;">
+                <div style="width: 60px; height: 60px; background: #eef2ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-medal" style="font-size: 1.8rem; color: #6366f1;"></i>
+                </div>
+                <h3 style="color: var(--dark); font-size: 1.4rem; margin-bottom: 10px;">Judo (Compétition)</h3>
+                <p style="color: #475569; font-size: 0.95rem;">
+                    <strong>4 fois champion</strong>. Discipline, respect et persévérance acquis sur les tatamis.
+                </p>
+            </div>
+
+            {# Coaching #}
+            <div class="glass-card" style="border-top: 6px solid #6366f1;">
+                <div style="width: 60px; height: 60px; background: #eef2ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-users" style="font-size: 1.8rem; color: #6366f1;"></i>
+                </div>
+                <h3 style="color: var(--dark); font-size: 1.4rem; margin-bottom: 10px;">Coaching</h3>
+                <p style="color: #475569; font-size: 0.95rem;">
+                    Transmission pédagogique auprès de jeunes débutants. Leadership et écoute.
+                </p>
+            </div>
+
+            {# Design #}
+            <div class="glass-card" style="border-top: 6px solid #6366f1;">
+                <div style="width: 60px; height: 60px; background: #eef2ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-laptop-code" style="font-size: 1.8rem; color: #6366f1;"></i>
+                </div>
+                <h3 style="color: var(--dark); font-size: 1.4rem; margin-bottom: 10px;">Création Digitale</h3>
+                <p style="color: #475569; font-size: 0.95rem;">
+                    Réalisation graphique sous Photoshop. Identités visuelles et logos.
+                </p>
+            </div>
+        </div>
+
+        {# Bouton vers CV #}
+        <div style="text-align: center; margin-top: 70px;">
+            <a href="{{ path('app_cv') }}" class="btn-main" style="background: var(--dark); padding: 15px 40px; text-decoration: none; border-radius: 12px; display: inline-block;">
+                Consulter mon parcours complet <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .btn-download:hover {
+        background: #15803d !important;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(22, 163, 74, 0.3);
+    }
+</style>
+{% endblock %}
