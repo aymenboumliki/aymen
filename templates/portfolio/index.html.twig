@@ -1,58 +1,243 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil - Aymen Boumliki{% endblock %}
+{% block title %}Accueil — Aymen Boumliki{% endblock %}
 
 {% block body %}
-<section class="page-home">
-    <div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
-        
-        <div class="glass-card" style="max-width: 800px; width: 100%; text-align: center; border-top: 6px solid var(--primary);">
-            
-            {# 1. Photo de profil (Lien direct vers public/aymen.png) #}
-            <div style="position: relative; display: inline-block; margin-bottom: 25px;">
-                <img src="{{ asset('aymen.png') }}" alt="Aymen Boumliki" 
-                     style="width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.1); background: white;">
-                
-                {# Badge bleu "Vérifié" #}
-                <div style="position: absolute; top: 15px; right: 5px; background: var(--primary); color: white; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                    <i class="fas fa-check" style="font-size: 0.85rem;"></i>
-                </div>
+
+<style>
+    /* ── Hero wrapper ── */
+    .hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 72vh;
+        padding: 40px 0;
+    }
+
+    .hero-card {
+        max-width: 780px;
+        width: 100%;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 48px 44px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    /* Coin décoratif top-left */
+    .hero-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 80px; height: 80px;
+        border-top: 2px solid var(--accent);
+        border-left: 2px solid var(--accent);
+        opacity: 0.5;
+    }
+
+    /* Coin décoratif bottom-right */
+    .hero-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0; right: 0;
+        width: 80px; height: 80px;
+        border-bottom: 2px solid var(--accent-2);
+        border-right: 2px solid var(--accent-2);
+        opacity: 0.5;
+    }
+
+    .hero-card:hover {
+        border-color: var(--border-hover);
+        box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    /* ── Photo ── */
+    .avatar-wrap {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 32px;
+    }
+
+    .avatar-wrap img {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        object-position: center 15%;
+        border: 1px solid var(--accent);
+        box-shadow: 0 0 20px var(--accent-glow);
+        filter: none;
+        display: block;
+    }
+
+    .avatar-badge {
+        position: absolute;
+        bottom: -10px;
+        right: -12px;
+        background: var(--bg);
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        font-size: 0.65rem;
+        padding: 4px 10px;
+        letter-spacing: 0.1em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .dot-live {
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulse-live 1.4s ease-in-out infinite;
+        box-shadow: 0 0 6px var(--accent);
+    }
+
+    @keyframes pulse-live {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50%       { opacity: 0.3; transform: scale(0.7); }
+    }
+
+    /* ── Identité ── */
+    .hero-title {
+        font-family: 'Syne', sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-bright);
+        margin-bottom: 10px;
+        line-height: 1.2;
+    }
+
+    .hero-title .prompt { color: var(--accent-2); }
+    .hero-title .name   { color: var(--accent); }
+
+    .hero-sub {
+        font-size: 0.82rem;
+        color: var(--text-dim);
+        letter-spacing: 0.08em;
+        margin-bottom: 32px;
+    }
+
+    /* ── Bio terminal ── */
+    .bio-block {
+        background: rgba(0, 229, 255, 0.03);
+        border: 1px dashed rgba(0, 229, 255, 0.2);
+        padding: 20px 24px;
+        margin: 28px 0 36px;
+        text-align: left;
+        font-size: 0.85rem;
+        line-height: 1.75;
+        position: relative;
+    }
+
+    .bio-block .cmd {
+        color: var(--accent-2);
+        display: block;
+        margin-bottom: 8px;
+        font-size: 0.78rem;
+    }
+
+    .bio-block p {
+        color: var(--text);
+        margin: 0;
+    }
+
+    /* ── Bouton hero ── */
+    .hero-cta {
+        display: inline-block;
+        padding: 12px 28px;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.82rem;
+        text-decoration: none;
+        color: var(--bg);
+        background: var(--accent);
+        border: 1px solid var(--accent);
+        letter-spacing: 0.06em;
+        transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+        box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .hero-cta:hover {
+        background: transparent;
+        color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 0 32px var(--accent-glow);
+    }
+
+    /* ── Badges ── */
+    .badges {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 44px;
+    }
+
+    .badge-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        border: 1px solid var(--border);
+        padding: 6px 14px;
+        transition: color 0.2s, border-color 0.2s;
+    }
+
+    .badge-item:hover {
+        color: var(--accent);
+        border-color: var(--border-hover);
+    }
+
+    .badge-item i { color: var(--accent-2); font-size: 0.8rem; }
+</style>
+
+<section class="hero">
+    <div class="hero-card">
+
+        {# ── Photo ── #}
+        <div class="avatar-wrap">
+            <img src="{{ asset('ma photo.png') }}" alt="Aymen Boumliki">
+            <div class="avatar-badge">
+                <span class="dot-live"></span>
+                ONLINE
             </div>
-
-            {# 2. Titre et Sous-titre #}
-            <h1 style="font-size: 3rem; font-weight: 800; color: var(--dark); margin-bottom: 10px; letter-spacing: -1px;">
-                Bonjour, je suis <span style="color: var(--primary);">Aymen</span>
-            </h1>
-            
-            <p style="font-size: 1.5rem; color: #64748b; font-weight: 600; margin-bottom: 30px;">
-                Étudiant en BUT Réseaux et Télécommunications
-            </p>
-
-            {# 3. Bloc Citation #}
-            <div style="background: rgba(14, 165, 233, 0.05); padding: 30px; border-radius: 20px; border-left: 5px solid var(--primary); margin: 30px 0;">
-                <p style="font-style: italic; color: #475569; font-size: 1.25rem; margin: 0; line-height: 1.8;">
-                    <i class="fas fa-quote-left" style="color: var(--primary); margin-right: 12px; opacity: 0.4;"></i>
-                    Passionné par l'informatique et compétiteur dans l'âme, je mets ma détermination 
-                    et mon esprit d'équipe au service de mes projets technologiques.
-                    <i class="fas fa-quote-right" style="color: var(--primary); margin-left: 12px; opacity: 0.4;"></i>
-                </p>
-            </div>
-
-            {# 4. Bouton Explorer #}
-            <div style="margin-top: 40px;">
-                <a href="{{ path('app_projects') }}" class="btn-main" style="padding: 18px 45px; font-size: 1.15rem; text-decoration: none;">
-                    Explorer mon univers <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
-                </a>
-            </div>
-
-            {# 5. Badges de compétences #}
-            <div style="margin-top: 50px; display: flex; justify-content: center; gap: 30px; opacity: 0.7; font-size: 1rem; font-weight: 600; color: var(--dark);">
-                <span><i class="fas fa-network-wired" style="color: var(--primary); margin-right: 8px;"></i> Réseaux</span>
-                <span><i class="fas fa-code" style="color: var(--primary); margin-right: 8px;"></i> Développement</span>
-                <span><i class="fas fa-shield-alt" style="color: var(--primary); margin-right: 8px;"></i> Télécoms</span>
-            </div>
-
         </div>
+
+        {# ── Identité ── #}
+        <h1 class="hero-title">
+            <span class="prompt">▸ whoami</span><br>
+            <span class="name">Aymen Boumliki</span>
+        </h1>
+
+        <p class="hero-sub">[ Étudiant BUT Réseaux & Télécommunications — Roanne ]</p>
+
+        {# ── Bio terminal ── #}
+        <div class="bio-block">
+            <span class="cmd">$ cat mission.txt</span>
+            <p>
+                Passionné par les réseaux et la cybersécurité, je mets ma détermination
+                et mon esprit d'équipe au service de projets technologiques concrets.
+            </p>
+        </div>
+
+        {# ── CTA ── #}
+        <a href="{{ path('app_projects') }}" class="hero-cta">
+            ./view_projects.sh <i class="fas fa-terminal" style="margin-left: 8px;"></i>
+        </a>
+
+        {# ── Badges ── #}
+        <div class="badges">
+            <div class="badge-item"><i class="fas fa-network-wired"></i> Network Admin</div>
+            <div class="badge-item"><i class="fas fa-code"></i> Symfony Dev</div>
+            <div class="badge-item"><i class="fas fa-shield-halved"></i> Cyber Sec</div>
+        </div>
+
     </div>
 </section>
+
 {% endblock %}

@@ -38,9 +38,17 @@ class AymenController extends AbstractController
     #[Route('/mes-loisirs', name: 'app_projects')]
     public function projects(): Response
     {
-        // IMPORTANT : Vérifie que ton fichier s'appelle bien 'projet.html.twig' (sans S)
-        // dans le dossier templates/portfolio/
         return $this->render('portfolio/projet.html.twig');
+    }
+
+    /**
+     * Page Compétences & Analyse critique
+     * Route : /mes-competences
+     */
+    #[Route('/mes-competences', name: 'app_skills')]
+    public function skills(): Response
+    {
+        return $this->render('portfolio/skills.html.twig');
     }
 
     /**

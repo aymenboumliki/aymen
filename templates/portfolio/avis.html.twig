@@ -1,21 +1,240 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Feedback — Aymen Boumliki{% endblock %}
+
 {% block body %}
-<section class="page-home">
-    <div class="container">
-        <div class="glass-card" style="max-width: 600px; margin: 0 auto; border-top: 6px solid var(--primary);">
-            <h2 style="text-align: center;"><i class="fas fa-star" style="color: #fbbf24;"></i> Votre avis sur mon Portfolio</h2>
-            <form style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
-                <input type="text" placeholder="Nom ou Entreprise" style="padding: 12px; border-radius: 10px; border: 1px solid #ddd;">
-                <select style="padding: 12px; border-radius: 10px; border: 1px solid #ddd;">
-                    <option>Note : ⭐⭐⭐⭐⭐ (Excellent)</option>
-                    <option>Note : ⭐⭐⭐⭐ (Très bien)</option>
-                    <option>Note : ⭐⭐⭐ (Bien)</option>
-                </select>
-                <textarea placeholder="Votre message..." rows="4" style="padding: 12px; border-radius: 10px; border: 1px solid #ddd;"></textarea>
-                <button type="submit" class="btn-main">Envoyer l'avis</button>
-            </form>
+
+<style>
+    /* ── Wrapper centré ── */
+    .feedback-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 48px;
+    }
+
+    .feedback-card {
+        max-width: 580px;
+        width: 100%;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 40px 36px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Barre gradient top */
+    .feedback-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    /* Coin déco bottom-right */
+    .feedback-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0; right: 0;
+        width: 60px; height: 60px;
+        border-bottom: 1px solid var(--border-hover);
+        border-right: 1px solid var(--border-hover);
+        opacity: 0.4;
+    }
+
+    /* ── En-tête ── */
+    .feedback-header {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .feedback-header .icon-wrap {
+        width: 52px; height: 52px;
+        border: 1px solid rgba(251, 191, 36, 0.3);
+        background: rgba(251, 191, 36, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        font-size: 1.4rem;
+        color: #fbbf24;
+    }
+
+    .feedback-header h2 {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--text-bright);
+        margin: 0 0 8px;
+    }
+
+    .feedback-header p {
+        font-size: 0.8rem;
+        color: var(--text-dim);
+        margin: 0;
+        letter-spacing: 0.04em;
+    }
+
+    /* ── Formulaire ── */
+    .feedback-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .form-field label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-dim);
+    }
+
+    .feedback-form input,
+    .feedback-form select,
+    .feedback-form textarea {
+        padding: 12px 14px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+        font-family: 'Space Mono', monospace;
+        font-size: 0.82rem;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        width: 100%;
+        box-sizing: border-box;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    .feedback-form input::placeholder,
+    .feedback-form textarea::placeholder {
+        color: var(--text-dim);
+    }
+
+    .feedback-form input:focus,
+    .feedback-form select:focus,
+    .feedback-form textarea:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    /* Select arrow custom */
+    .select-wrap {
+        position: relative;
+    }
+
+    .select-wrap::after {
+        content: '▾';
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--accent);
+        pointer-events: none;
+        font-size: 0.8rem;
+    }
+
+    .feedback-form select option {
+        background: var(--bg-card);
+        color: var(--text);
+    }
+
+    /* ── Étoiles cliquables ── */
+    .stars-wrap {
+        display: flex;
+        gap: 6px;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+    .stars-wrap input { display: none; }
+
+    .stars-wrap label {
+        font-size: 1.6rem;
+        color: var(--border);
+        cursor: pointer;
+        transition: color 0.15s, text-shadow 0.15s;
+        letter-spacing: 0;
+        text-transform: none;
+    }
+
+    .stars-wrap input:checked ~ label,
+    .stars-wrap label:hover,
+    .stars-wrap label:hover ~ label {
+        color: #fbbf24;
+        text-shadow: 0 0 8px rgba(251,191,36,0.5);
+    }
+
+    /* ── Bouton submit ── */
+    .btn-submit {
+        padding: 13px;
+        background: transparent;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        font-family: 'Space Mono', monospace;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        margin-top: 6px;
+        width: 100%;
+        text-transform: uppercase;
+    }
+
+    .btn-submit:hover {
+        background: var(--accent);
+        color: var(--bg);
+        box-shadow: 0 0 20px var(--accent-glow);
+    }
+</style>
+
+<div class="feedback-wrap">
+    <div class="feedback-card">
+
+        <div class="feedback-header">
+            <div class="icon-wrap">
+                <i class="fas fa-star"></i>
+            </div>
+            <h2>Votre avis</h2>
+            <p>// feedback sur le portfolio</p>
         </div>
+
+        <form class="feedback-form" method="post">
+
+            <div class="form-field">
+                <label>Nom ou Entreprise</label>
+                <input type="text" name="nom" placeholder="ex: Jean Dupont">
+            </div>
+
+            <div class="form-field">
+                <label>Note globale</label>
+                <div class="stars-wrap">
+                    <input type="radio" name="note" id="s5" value="5"><label for="s5">★</label>
+                    <input type="radio" name="note" id="s4" value="4"><label for="s4">★</label>
+                    <input type="radio" name="note" id="s3" value="3"><label for="s3">★</label>
+                    <input type="radio" name="note" id="s2" value="2"><label for="s2">★</label>
+                    <input type="radio" name="note" id="s1" value="1"><label for="s1">★</label>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label>Message</label>
+                <textarea name="message" rows="5" placeholder="Partagez votre retour..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                Envoyer l'avis <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+            </button>
+
+        </form>
     </div>
-</section>
+</div>
+
 {% endblock %}

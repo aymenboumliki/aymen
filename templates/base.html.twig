@@ -4,145 +4,314 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Aymen Boumliki | Portfolio{% endblock %}</title>
-        
-        {# Polices modernes et Icônes FontAwesome #}
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 
         <style>
             :root {
-                --primary: #0ea5e9;    /* Bleu Ciel */
-                --primary-dark: #0284c7; 
-                --secondary: #6366f1;  /* Indigo (remplace le rose) */
-                --success: #16a34a;    /* Vert */
-                --dark: #0f172a;       /* Texte sombre */
-                --light: #f8fafc;      /* Fond clair */
+                --accent:       #00e5ff;
+                --accent-2:     #a855f7;
+                --accent-glow:  rgba(0, 229, 255, 0.25);
+                --accent-glow2: rgba(168, 85, 247, 0.2);
+                --bg:           #080b10;
+                --bg-surface:   #0d1117;
+                --bg-card:      #111620;
+                --border:       rgba(0, 229, 255, 0.18);
+                --border-hover: rgba(0, 229, 255, 0.55);
+                --text:         #c9d6e3;
+                --text-dim:     #5a7080;
+                --text-bright:  #e8f4f8;
             }
 
-            body { 
-                font-family: 'Plus Jakarta Sans', sans-serif; 
-                margin: 0; 
-                background: var(--light); 
-                color: var(--dark);
-                line-height: 1.6;
-            }
+            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-            /* --- NAVIGATION --- */
-            nav {
-                background: rgba(255, 255, 255, 0.85);
-                backdrop-filter: blur(12px);
-                padding: 1rem 2rem;
+            /* ── Corps ── */
+            body {
+                font-family: 'Space Mono', monospace;
+                background-color: var(--bg);
+                color: var(--text);
+                line-height: 1.7;
+                min-height: 100vh;
                 display: flex;
-                justify-content: space-around;
+                flex-direction: column;
+                /* Grille hexagonale subtile en fond */
+                background-image:
+                    radial-gradient(circle at 20% 20%, rgba(168,85,247,0.06) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(0,229,255,0.05) 0%, transparent 50%),
+                    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(0,229,255,0.04)' stroke-width='0.5'%3E%3Cpolygon points='30,2 58,17 58,43 30,58 2,43 2,17'/%3E%3C/g%3E%3C/svg%3E");
+                background-size: 100% 100%, 100% 100%, 60px 60px;
+            }
+
+            /* ── Nav ── */
+            nav {
+                background: rgba(13, 17, 23, 0.92);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                padding: 0 2.5rem;
+                height: 64px;
+                display: flex;
+                justify-content: space-between;
                 align-items: center;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 0 24px var(--accent-glow);
                 position: sticky;
                 top: 0;
                 z-index: 1000;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
             }
 
-            nav .logo { font-weight: 800; font-size: 1.4rem; color: var(--primary); letter-spacing: -1px; }
+            nav .logo {
+                font-family: 'Syne', sans-serif;
+                font-weight: 800;
+                font-size: 1.1rem;
+                color: var(--accent);
+                text-shadow: 0 0 12px var(--accent-glow);
+                letter-spacing: 0.05em;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
 
-            nav a {
+            nav .logo::before {
+                content: '▸';
+                color: var(--accent-2);
+                font-size: 0.9rem;
+                animation: pulse-dot 2s ease-in-out infinite;
+            }
+
+            @keyframes pulse-dot {
+                0%, 100% { opacity: 1; }
+                50%       { opacity: 0.3; }
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 0.25rem;
+                align-items: center;
+            }
+
+            .nav-links a {
                 text-decoration: none;
-                color: var(--dark);
-                font-weight: 600;
-                transition: all 0.3s ease;
-                padding: 10px 18px;
-                border-radius: 12px;
-                font-size: 0.95rem;
+                color: var(--text-dim);
+                padding: 6px 14px;
+                font-size: 0.82rem;
+                letter-spacing: 0.04em;
+                border: 1px solid transparent;
+                transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+                position: relative;
             }
 
-            nav a:hover { background: var(--primary); color: white; transform: translateY(-2px); }
+            .nav-links a:hover {
+                color: var(--accent);
+                border-color: var(--border);
+                background: rgba(0, 229, 255, 0.06);
+                box-shadow: 0 0 12px var(--accent-glow);
+            }
 
-            .container { max-width: 1100px; margin: 0 auto; }
+            .nav-links a.active {
+                color: var(--accent);
+                border-color: var(--border-hover);
+            }
 
+            /* ── Contenu ── */
+            .container {
+                max-width: 1080px;
+                margin: 0 auto;
+                padding: 48px 24px;
+                flex: 1;
+            }
+
+            /* ── Cards ── */
             .glass-card {
-                background: rgba(255, 255, 255, 0.8);
-                border: 1px solid rgba(255, 255, 255, 0.5);
-                border-radius: 30px;
-                padding: 40px;
-                box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                padding: 32px;
+                transition: border-color 0.3s, box-shadow 0.3s;
             }
 
-            .btn-main {
-                background: var(--primary);
-                color: white;
-                padding: 14px 28px;
-                border-radius: 14px;
-                text-decoration: none;
-                font-weight: 700;
+            .glass-card:hover {
+                border-color: var(--border-hover);
+                box-shadow: 0 0 20px var(--accent-glow);
+            }
+
+            /* ── Titres utilitaires ── */
+            h1, h2, h3 {
+                font-family: 'Syne', sans-serif;
+                color: var(--text-bright);
+            }
+
+            .section-label {
+                font-size: 0.72rem;
+                letter-spacing: 0.2em;
+                color: var(--accent-2);
+                text-transform: uppercase;
+                margin-bottom: 0.5rem;
+            }
+
+            .accent-text { color: var(--accent); }
+
+            /* ── Boutons ── */
+            .btn {
                 display: inline-block;
-                transition: all 0.3s;
-                border: none;
+                padding: 10px 22px;
+                font-family: 'Space Mono', monospace;
+                font-size: 0.82rem;
+                text-decoration: none;
+                border: 1px solid var(--accent);
+                color: var(--accent);
+                background: transparent;
+                cursor: pointer;
+                transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+                letter-spacing: 0.05em;
             }
 
-            footer { 
-                background: var(--dark); 
-                color: white; 
-                padding: 60px 20px; 
-                text-align: center; 
+            .btn:hover {
+                background: var(--accent);
+                color: var(--bg);
+                box-shadow: 0 0 20px var(--accent-glow);
+            }
+
+            .btn-ghost {
+                border-color: var(--border);
+                color: var(--text-dim);
+            }
+
+            .btn-ghost:hover {
+                background: var(--bg-card);
+                color: var(--text);
+                box-shadow: none;
+            }
+
+            /* ── Tags / badges ── */
+            .tag {
+                display: inline-block;
+                padding: 3px 10px;
+                font-size: 0.72rem;
+                border: 1px solid var(--accent-2);
+                color: var(--accent-2);
+                letter-spacing: 0.06em;
+                background: rgba(168, 85, 247, 0.08);
+            }
+
+            /* ── Séparateur ── */
+            .divider {
+                height: 1px;
+                background: linear-gradient(90deg, transparent, var(--accent), transparent);
+                margin: 2rem 0;
+                opacity: 0.3;
+            }
+
+            /* ── Curseur clignotant ── */
+            .cursor {
+                display: inline-block;
+                width: 8px;
+                height: 1.1em;
+                background: var(--accent);
+                animation: blink 1.1s step-end infinite;
+                vertical-align: middle;
+                margin-left: 2px;
+                box-shadow: 0 0 6px var(--accent);
+            }
+
+            @keyframes blink { 50% { opacity: 0; } }
+
+            /* ── Footer ── */
+            footer {
+                background: var(--bg-surface);
+                border-top: 1px solid var(--border);
+                padding: 28px 24px;
+                text-align: center;
+                font-size: 0.78rem;
+                color: var(--text-dim);
             }
 
             .social-icons {
-                margin-bottom: 20px;
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+                margin-bottom: 1rem;
             }
 
-            .social-icons a { 
-                color: white; 
-                font-size: 1.8rem; 
-                margin: 0 15px; 
-                text-decoration: none; 
-                transition: all 0.3s ease;
-                display: inline-block;
+            .social-icons a {
+                color: var(--text-dim);
+                font-size: 1.3rem;
+                text-decoration: none;
+                transition: color 0.2s, text-shadow 0.2s;
             }
 
-            /* Couleurs au survol pour les réseaux */
-            .social-icons a:hover { transform: scale(1.2); }
-            .fa-instagram:hover { color: #E1306C; }
-            .fa-linkedin:hover { color: #0077B5; }
-            .fa-github:hover { color: #6e5494; }
-            .fa-envelope:hover { color: var(--primary); }
+            .social-icons a:hover {
+                color: var(--accent);
+                text-shadow: 0 0 10px var(--accent-glow);
+            }
 
+            footer .footer-dot {
+                color: var(--accent-2);
+                margin: 0 6px;
+            }
+
+            /* ── Flash messages ── */
+            .flash {
+                padding: 12px 20px;
+                border-left: 3px solid var(--accent);
+                background: rgba(0,229,255,0.06);
+                margin-bottom: 1.5rem;
+                font-size: 0.85rem;
+                color: var(--accent);
+            }
+
+            .flash.error {
+                border-color: #ff4d6a;
+                background: rgba(255,77,106,0.06);
+                color: #ff4d6a;
+            }
+
+            /* ── Responsive ── */
+            @media (max-width: 640px) {
+                nav { padding: 0 1rem; height: auto; flex-direction: column; gap: 0.75rem; padding: 1rem; }
+                .nav-links { flex-wrap: wrap; justify-content: center; }
+                .container { padding: 32px 16px; }
+            }
         </style>
-        {% block stylesheets %}{% endblock %}
     </head>
     <body>
         <nav>
-            <div class="logo">AYMEN<span style="color: var(--dark);">.</span></div>
+            <div class="logo">AYMEN.BOUMLIKI</div>
             <div class="nav-links">
-                <a href="{{ path('app_home') }}">Accueil</a>
-                <a href="{{ path('app_cv') }}">Mon Parcours</a>
-                <a href="{{ path('app_projects') }}">Loisirs & Projets</a>
-                <a href="{{ path('app_avis') }}" style="border: 2px solid var(--primary);">Donner mon avis</a>
+                <a href="{{ path('app_home') }}">./home</a>
+                <a href="{{ path('app_cv') }}">./cv</a>
+                <a href="{{ path('app_projects') }}">./projects</a>
+                <a href="{{ path('app_skills') }}">./skills</a>
+                <a href="{{ path('app_avis') }}">./feedback</a>
             </div>
         </nav>
 
-        <main>
+        <main class="container">
+            {% for type, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash {{ type == 'error' ? 'error' : '' }}">{{ message }}</div>
+                {% endfor %}
+            {% endfor %}
+
             {% block body %}{% endblock %}
         </main>
 
         <footer>
             <div class="social-icons">
-                {# GitHub #}
                 <a href="https://github.com/aymenboumliki" target="_blank" title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                {# LinkedIn #}
                 <a href="https://www.linkedin.com/in/aymen-boumliki-a554882a3" target="_blank" title="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                {# Instagram #}
-                <a href="https://www.instagram.com/7a.aymen?igsh=MWVkODhwMmVremJjNQ%3D%3D&utm_source=qr" target="_blank" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                {# Email #}
-                <a href="mailto:aymenboumliki2007@gmail.com" title="Envoyer un email">
-                    <i class="fas fa-envelope"></i>
-                </a>
             </div>
-            <p>© 2026 — Aymen Boumliki | Étudiant en Réseaux et Télécommunications</p>
+            <p>
+                © 2026 Aymen Boumliki
+                <span class="footer-dot">◆</span>
+                Étudiant BUT R&T — Roanne
+                <span class="footer-dot">◆</span>
+                <span style="color: var(--accent);">root@network:~$</span>
+                <span class="cursor"></span>
+            </p>
         </footer>
     </body>
 </html>
